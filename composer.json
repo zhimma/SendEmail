@@ -1,0 +1,20 @@
+{
+    "name": "zhimma/send-email",
+    "description": "send email",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhimma",
+            "email": "mma5694@email.com"
+        }
+    ],
+    "require": {
+        "pimple/pimple": "^3.2",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zhimma\\SendEmail\\" : "src/"
+        }
+    }
+}
