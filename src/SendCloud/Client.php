@@ -9,18 +9,31 @@
 namespace Zhimma\SendEmail\SendCloud;
 
 use Pimple\Container;
+use Zhimma\SendEmail\BaseClient;
 
-class Client
+class Client extends BaseClient
 {
     protected $config;
 
     public function __construct(Container $app)
     {
+        parent::__construct();
         $this->config = $app['config'];
     }
 
-    public function send()
+    public function send($params = [])
     {
-        var_dump($this->config);
+        if (empty($params)) {
+            return $this->error('10010', '参数不完整');
+        }
+        return $this->request('mail/send', array_merge($this->config, $params), 'POST');
+    }
+
+    public function sendWithTemplate($params = [])
+    {
+        if (empty($params)) {
+            return $this->error('10010', '参数不完整');
+        }
+        return $this->request('mail/sendtemplate', array_merge($this->config, $params), 'POST');
     }
 }

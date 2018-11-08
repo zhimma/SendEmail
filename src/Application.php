@@ -24,7 +24,29 @@ class Application extends Container
     {
         parent::__construct();
         $this->registerProviders($this->providers);
-        $this['config'] = $config;
+        $this['config']     = $config;
+
+    }
+
+    public function addProvider($provider)
+    {
+        array_push($this->providers, $provider);
+
+        return $this;
+    }
+
+    public function setProviders($providers)
+    {
+        $this->providers = [];
+
+        foreach ($providers as $provider) {
+            $this->addProvider($provider);
+        }
+    }
+
+    public function getProviders()
+    {
+        return $this->providers;
     }
 
     /**
